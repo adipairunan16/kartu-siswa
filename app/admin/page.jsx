@@ -7,24 +7,34 @@ export default function Admin() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [students, setStudents] = useState([]);
-
+const [kelas, setKelas] = useState("");
   useEffect(() => {
     loadStudents();
   }, []);
 
   async function loadStudents() {
-    try {
-      const res = await fetch("/api/students");
-      const data = await res.json();
+  try {
+    const res = await fetch("/api/students");
+    const data = await res.json();
+
+    if (Array.isArray(data)) {
       setStudents(data);
-    } catch (err) {
-      console.log(err);
+    } else if (data.success && Array.isArray(data.data)) {
+      setStudents(data.data);
+    } else {
+      console.error("API Error:", data);
+      setStudents([]);
     }
+  } catch (err) {
+    console.error(err);
+    setStudents([]);
   }
+}
 
   async function upload() {
     if (!file) {
       alert("Pilih file Excel terlebih dahulu");
+     
       return;
     }
 
@@ -52,8 +62,14 @@ export default function Admin() {
 
     setLoading(false);
   }
+  const studentList = Array.isArray(students) ? students : [];
+const kelasList = [...new Set(studentList.map((s) => s.kelas))].sort();
+ const filteredStudents =
+  kelas === ""
+    ? studentList
+    : studentList.filter((s) => s.kelas === kelas);
 
-  return (
+return (
     <div className="min-h-screen bg-slate-100">
 
       {/* Header */}
@@ -158,15 +174,45 @@ export default function Admin() {
 
           <div className="flex justify-between items-center mb-5">
 
-            <h2 className="text-3xl font-bold">
-              Data Siswa
-            </h2>
+  <h2 className="text-3xl font-bold">
+    Data Siswa
+  </h2>
 
-            <span className="bg-blue-600 text-white px-4 py-2 rounded-lg">
-              Total : {students.length}
-            </span>
+  <div className="flex items-center gap-3">
+ <span className="bg-blue-600 text-white px-4 py-2 rounded-lg">
+    Total : {filteredStudents.length}
+  </span>
+    <select
+      value={kelas}
+      onChange={(e) => setKelas(e.target.value)}
+      className="border rounded-lg px-4 py-2"
+    >
+      <option value="">Pilih Kelas</option>
 
-          </div>
+      {kelasList.map((k) => (
+        <option key={k} value={k}>
+          {k}
+        </option>
+      ))}
+
+    </select>
+
+    <button
+      onClick={() =>
+        window.open(
+          `/print/class/${encodeURIComponent(kelas)}`,
+          "_blank"
+        )
+      }
+      disabled={!kelas}
+      className="bg-green-600 text-white px-5 py-2 rounded-lg disabled:bg-gray-400"
+    >
+      🖨 Cetak Semua
+    </button>
+
+  </div>
+
+</div>
 
           <div className="overflow-auto">
 
@@ -192,7 +238,7 @@ export default function Admin() {
 
               <tbody>
 
-                {students.length === 0 ? (
+                {filteredStudents.length === 0 ? (
 
                   <tr>
 
@@ -207,7 +253,7 @@ export default function Admin() {
 
                 ) : (
 
-                  students.map((student, index) => (
+                  filteredStudents.map((student, index) => (
 
                     <tr
                       key={student._id}

@@ -12,10 +12,14 @@ export async function GET() {
       name: 1,
     });
 
-    return Response.json(students, {
-      status: 200,
+    return Response.json({
+      success: true,
+      data: students,
     });
+
   } catch (err) {
+    console.error(err);
+
     return Response.json(
       {
         success: false,
