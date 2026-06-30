@@ -249,7 +249,7 @@ text-[28px]
 
 <span>
 
-: {student.nis}
+: {student.nis} / {student.nisn}
 
 </span>
 
