@@ -62,8 +62,40 @@ const [kelas, setKelas] = useState("");
 
     setLoading(false);
   }
+
+  async function syncPhotos() {
+  if (!confirm("Sinkronkan semua foto dari Google Drive?")) {
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const res = await fetch("/api/sync-photos", {
+      method: "POST",
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      alert(
+        `Berhasil mengupdate ${data.updated} dari ${data.total} siswa`
+      );
+
+      await loadStudents();
+    } else {
+      alert(data.error);
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Sinkron gagal");
+  }
+
+  setLoading(false);
+}
   const studentList = Array.isArray(students) ? students : [];
-const kelasList = [...new Set(studentList.map((s) => s.kelas))].sort();
+
+  const kelasList = [...new Set(studentList.map((s) => s.kelas))].sort();
  const filteredStudents =
   kelas === ""
     ? studentList
@@ -110,6 +142,13 @@ return (
             >
               {loading ? "Upload..." : "Upload Sekarang"}
             </button>
+
+            <button
+  onClick={syncPhotos}
+  className="ml-3 bg-green-600 text-white px-8 py-3 rounded-xl hover:bg-green-700"
+>
+  📷 Sinkronkan Foto
+</button>
 
             {result && (
               <div className="mt-8 bg-green-50 p-5 rounded">

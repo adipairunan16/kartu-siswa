@@ -160,29 +160,45 @@ py-10
 <div>
 
 <div
-className="
-w-[190px]
-h-[250px]
-border
-overflow-hidden
-"
+  className="
+  w-[190px]
+  h-[250px]
+  border
+  overflow-hidden
+  "
 >
 
-{student.photo ? (
+  
 
-<img
-src={student.photo}
-className="
-w-full
-h-full
-object-cover
-"
-/>
-
+  {student.photo ? (
+  <img
+    src={`/api/photo/${student.photo}`}
+    alt={student.name}
+    className="w-full h-full object-cover block"
+  />
 ) : (
+  <div
+    className="
+      w-full
+      h-full
+      border-2
+      border-dashed
+      border-gray-400
+      bg-gray-100
+      flex
+      flex-col
+      items-center
+      justify-center
+    "
+  >
+    <div className="text-5xl font-bold text-gray-500">
+      3×4
+    </div>
 
-<div className="w-full h-full bg-pink-100"/>
-
+    <div className="text-lg text-gray-500 mt-2">
+      FOTO
+    </div>
+  </div>
 )}
 
 </div>

@@ -3,12 +3,15 @@ import { connectDB } from "@/lib/mongodb";
 import StudentCardNew from "@/components/StudentCardNew";
 import DownloadAllJPGButton from "@/components/DownloadAllJPGButton";
 
+
 async function getStudents(kelas) {
   await connectDB();
 
   const students = await Student.find({
     kelas: decodeURIComponent(kelas),
   }).lean();
+
+
 
   return JSON.parse(JSON.stringify(students));
 }
