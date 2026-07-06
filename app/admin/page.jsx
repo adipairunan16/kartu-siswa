@@ -248,7 +248,12 @@ return (
     >
       🖨 Cetak Semua
     </button>
-
+<button
+  onClick={() => window.open("/print/back", "_blank")}
+  className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg"
+>
+  📄 Cetak Belakang
+</button>
   </div>
 
 </div>

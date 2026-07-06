@@ -316,7 +316,7 @@ pt-[200px]
 <p className="translate-y-10 text-[22px]">
 
 Tana Toraja,
-21 Juni 2025
+1 Juli 2026
 
 </p>
 
