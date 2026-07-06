@@ -59,31 +59,31 @@ export default function StudentCardBack() {
           shadow-lg
           border-2
           border-blue-100
-          px-1
+          px-2
           py-1
           "
         >
 
-          <ul className="space-y-6 text-[24px] leading-relaxed">
+          <ul className="list-disc pl-8 space-y-6 text-[19px] leading-relaxed text-justify">
 
             <li>
-              • Kartu ini berlaku selama pemilik masih menjadi siswa SMK Kristen Pelangi Makale.
+            Kartu ini berlaku selama pemiliknya masih berstatus sebagai siswa / siswi SMK Kristen Pelangi Makale.
             </li>
 
             <li>
-              • Kartu wajib dibawa setiap hari selama berada di lingkungan sekolah.
+            Wajib mengembalikan kartu ini kepada pihak sekolah apabila dikemudian hari pemilik kartu ini pindah sekolah atau berhenti sekolah.
             </li>
 
             <li>
-              • Apabila kartu hilang atau rusak segera laporkan kepada wali kelas atau tata usaha.
+            Kartu ini tidak boleh berpindah pemilik. Dipinjamkan atau digunakan oleh orang lain.
             </li>
 
             <li>
-              • Kartu tidak boleh dipinjamkan atau dipindahtangankan kepada orang lain.
+            Penggantian atau pembuatan kartu baru dikarenakan hilang atau rusak, akan dikenakan biaya.
             </li>
 
             <li>
-              • Jika menemukan kartu ini harap mengembalikan ke pihak sekolah.
+            Apabila anda kehilangan atau menemukan kartu ini, segera laporkan ke pihak sekolah.
             </li>
 
           </ul>
