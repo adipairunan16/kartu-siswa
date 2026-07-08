@@ -10,22 +10,23 @@ export async function POST() {
 
     let success = 0;
 
-    for (const student of students) {
-      const photo = await findStudentPhoto(
-        student.name,
-        student.kelas
-      );
+  for (const student of students) {
+  const photo = await findStudentPhoto(
+    student.name,
+    student.kelas
+  );
 
-      if (photo) {
-        student.photo = photo;
-        await student.save();
+  if (photo) {
+    student.photo = photo;
+    console.log(`✅ Update: ${student.name}`);
+    success++;
+  } else {
+    student.photo = "";      // atau null
+    console.log(`❌ Tidak ditemukan: ${student.name}`);
+  }
 
-        console.log(`✅ Update: ${student.name}`);
-        success++;
-      } else {
-        console.log(`❌ Tidak ditemukan: ${student.name}`);
-      }
-    }
+  await student.save();
+}
 
     return Response.json({
       success: true,

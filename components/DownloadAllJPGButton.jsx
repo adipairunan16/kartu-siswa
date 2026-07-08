@@ -16,6 +16,16 @@ export default function DownloadAllJPGButton() {
         alert("Tidak ada kartu ditemukan");
         return;
       }
+await Promise.all(
+  Array.from(document.images).map((img) => {
+    if (img.complete) return Promise.resolve();
+
+    return new Promise((resolve) => {
+      img.onload = resolve;
+      img.onerror = resolve;
+    });
+  })
+);
 
       for (const card of cards) {
         // Ambil nama siswa untuk nama file
@@ -23,7 +33,7 @@ export default function DownloadAllJPGButton() {
 
         // Render menjadi PNG
         const png = await domToPng(card, {
-          scale:4,
+          scale:2.5,
           backgroundColor:"#ffffff"
         });
 
@@ -47,12 +57,12 @@ export default function DownloadAllJPGButton() {
 
         ctx.drawImage(img, 0, 0);
 
-        const jpg = canvas.toDataURL("image/jpeg", 1);
+     const jpg = canvas.toDataURL("image/jpeg", 1);
 
-        // Base64 -> Blob
-        const blob = await (await fetch(jpg)).blob();
+const blob = await (await fetch(jpg)).blob();
 
-        zip.file(`${nama}.jpg`, blob);
+zip.file(`${nama}.jpg`, blob);
+
       }
 
       // Buat ZIP
