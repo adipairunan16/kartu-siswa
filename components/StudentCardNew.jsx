@@ -145,16 +145,48 @@ Jln. Buisun Burake No.1, Kel.Buntu Burake, Kec.Makale,Kab. Tana Toraja Prov.Sula
 
 {/* BODY */}
 <div
-className="
-relative
-z-10
-grid
-grid-cols-[260px_1fr_300px]
-gap-8
-px-14
-py-10
+  className="
+  relative
+  z-10
+  px-14
+  py-6
 "
 >
+
+  {/* JUDUL */}
+  <div className="text-center mb-">
+    <h2
+      className="
+      text-[25px]
+      font-black
+      tracking-[6px]
+      text-[#07265d]
+      uppercase
+      "
+    >
+      KARTU SISWA
+    </h2>
+
+    <div
+    
+      className="
+      w-66
+      h-1
+      bg-[#35bde7]
+      mx-auto
+      mt-0.1
+      
+      "
+    />
+  </div>
+
+  <div
+    className="
+    grid
+    grid-cols-[260px_1fr_300px]
+    gap-8
+    "
+  ></div>
 
 {/* FOTO */}
 <div>
@@ -233,13 +265,13 @@ font-black
 
 <h1
 className="
-translate-y-1
-absolute left-70
+absolute
+left-70
+top-[65px]
 text-[34px]
 font-black
 uppercase
 leading-relaxed
-mb-2
 whitespace-nowrap
 overflow-hidden
 text-ellipsis
@@ -259,7 +291,7 @@ text-[28px]
 "
 >
 
-<div className="leading-relaxed absolute left-70 grid grid-cols-[180px_1fr] translate-y-20">
+<div className="leading-relaxed absolute top-[55px] left-70 grid grid-cols-[180px_1fr] translate-y-20">
 
 <b>NIS / NISN</b>
 
@@ -306,7 +338,9 @@ text-[28px]
 {/* TTD */}
 <div
 className="
-flex
+absolute
+right-10
+top-[60px]
 flex-col
 items-center
 pt-[200px]
@@ -381,13 +415,12 @@ Andarias Palallo, S.E., S.Pd.
 </div>
 
 
-
 {/* QR */}
 <div
 className="
 absolute
-bottom-[90px]
-left-[325px]
+bottom-[60px]
+left-[310px]
 z-40
 "
 >
@@ -411,7 +444,7 @@ absolute
 left-[35px]
 right-[35px]
 bottom-[15px]
-h-[40px]
+h-[20px]
 overflow-hidden
 "
 >
