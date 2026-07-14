@@ -166,17 +166,7 @@ Jln. Buisun Burake No.1, Kel.Buntu Burake, Kec.Makale,Kab. Tana Toraja Prov.Sula
     >
       KARTU SISWA
     </h2>
-    <div
-    
-      className="
-      w-66
-      h-1
-      bg-[#35bde7]
-      mx-auto
-      mt-0.1
-      
-      "
-    />
+   
   </div>
 
   <div
