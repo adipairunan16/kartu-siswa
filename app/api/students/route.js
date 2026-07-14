@@ -1,5 +1,6 @@
 import { connectDB } from "@/lib/mongodb";
 import Student from "@/models/Student";
+import { findStudentPhoto } from "@/lib/googleDrive";
 
 // =========================
 // GET : Ambil semua data siswa
@@ -12,9 +13,23 @@ export async function GET() {
       name: 1,
     });
 
+    const studentsWithPhoto = await Promise.all(
+      students.map(async (student) => {
+        const photo = await findStudentPhoto(
+          student.name,
+          student.kelas
+        );
+
+        return {
+          ...student.toObject(),
+          photo,
+        };
+      })
+    );
+
     return Response.json({
       success: true,
-      data: students,
+      data: studentsWithPhoto,
     });
 
   } catch (err) {
