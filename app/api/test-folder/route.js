@@ -15,13 +15,11 @@ const drive = google.drive({
 });
 
 export async function GET() {
-  const res = await drive.files.list({
-    q: `'${process.env.GOOGLE_DRIVE_FOLDER_ID}' in parents and trashed=false`,
-    fields: "files(id,name,mimeType)",
-    pageSize: 100,
+  const info = await drive.files.get({
+    fileId: process.env.GOOGLE_DRIVE_FOLDER_ID,
+    fields: "id,name,owners,permissions",
     supportsAllDrives: true,
-    includeItemsFromAllDrives: true,
   });
 
-  return Response.json(res.data.files);
+  return Response.json(info.data);
 }
