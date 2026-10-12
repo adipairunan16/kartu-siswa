@@ -339,7 +339,7 @@ pt-[200px]
 <p className="translate-y-10 text-[22px]">
 
 Tana Toraja,
-1 October 2026
+1 Oktober 2026
 
 </p>
 
